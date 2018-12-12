@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rowCount="7"
+    android:columnCount="4"
+    android:id="@+id/root"
+    android:background="#242424">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_columnSpan="4">
+
+        <TextView
+            android:id="@+id/textview_up"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_columnSpan="4"
+            android:layout_gravity="right"
+            android:background="#ff525252"
+            android:padding="3pt"
+            android:singleLine="true"
+            android:gravity="right"
+            android:textColor="#66ffffff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textview_down"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_columnSpan="4"
+            android:layout_gravity="right"
+            android:background="#ff525252"
+            android:padding="3pt"
+            android:singleLine="true"
+            android:gravity="right"
+            android:textColor="#66ffffff"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_columnSpan="4"
+            android:layout_gravity="right"
+            android:background="#ff525252"
+            android:padding="3pt"
+            android:gravity="right"
+            android:singleLine="true"
+            android:textColor="#eee"
+            android:textSize="40sp"
+            android:maxLines="10"/>
+
+    </LinearLayout>
+
+</GridLayout>
