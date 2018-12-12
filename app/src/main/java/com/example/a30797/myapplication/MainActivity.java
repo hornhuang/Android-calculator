@@ -134,16 +134,16 @@ public class MainActivity extends AppCompatActivity {
                             flag02 = 0 ;
                         }
                     }else if ( (chars[chat]).toCharArray()[0] <= '9' &&  (chars[chat]).toCharArray()[0] >= '0' ) {
-                        tv.append(chars[chat]);
                         if (flag02 == 1){
                             flag02 = 0 ;
                             tv.setText("");
                         }
+                        tv.append(chars[chat]);
                     }else if ( tv.getText().toString().length() > 0 ){
                         char array[] = tv.getText().toString().toCharArray();
                         if ( ( array[ array.length - 1 ] <= '9' &&  array[ array.length - 1 ] >= '0' )
                                 || array[ array.length - 1 ] == ')' ) {//判断前一个字符类型
-                            if( chars[chat] == "--" ){
+                            if( chars[chat].equals("--") ){
                                 tv.append("-");
                                 flag02 = 0 ;
                             }else{
