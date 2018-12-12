@@ -135,7 +135,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }else if ( (chars[chat]).toCharArray()[0] <= '9' &&  (chars[chat]).toCharArray()[0] >= '0' ) {
                         tv.append(chars[chat]);
-                        flag02 = 0 ;
+                        if (flag02 == 1){
+                            flag02 = 0 ;
+                            tv.setText("");
+                        }
                     }else if ( tv.getText().toString().length() > 0 ){
                         char array[] = tv.getText().toString().toCharArray();
                         if ( ( array[ array.length - 1 ] <= '9' &&  array[ array.length - 1 ] >= '0' )

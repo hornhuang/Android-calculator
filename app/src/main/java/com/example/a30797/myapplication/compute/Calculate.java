@@ -1,6 +1,7 @@
 package com.example.a30797.myapplication.compute;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Stack;
 
 public class Calculate {
@@ -265,7 +266,7 @@ public class Calculate {
             }else if (calculate[i].equals("/") ) {
                 b = new BigDecimal(num.pop());
                 a = new BigDecimal(num.pop());
-                sum = a.divide(b) ;
+                sum = a.divide(b,10,RoundingMode.HALF_UP) ;
                 num.push(String.valueOf(sum));
 
             }else if (calculate[i].equals("%") ) {
