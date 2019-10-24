@@ -6,31 +6,51 @@ import java.util.Stack;
 
 public class Calculate {
 
-    private Stack<String> num; //后缀用栈 中转后数字栈
+    /**
+     * 后缀用栈 中转后数字栈
+     */
+    private Stack<String> num;
 
-    private Stack<String> charnum;//中转后字符栈
+    /**
+     * 中转后字符栈
+     */
+    private Stack<String> charnum;
 
-    private String []calculate;//存字符串数组
+    /**
+     * 存字符串数组
+     */
+    private String []calculate;
 
-    private int calculateLength;//字符串数组长度
+    /**
+     * 字符串数组长度
+     */
+    private int calculateLength;
 
+    /**
+     *
+     */
     public Calculate() {
         // TODO Auto-generated constructor stub
-        num = new Stack<>(); //后缀用栈 中转后数字栈
-
-        charnum = new Stack<>();//中转后字符栈
-
-        calculate = new String[1000];//存字符串数组
-
-        calculateLength = 0 ;//字符串数组长度
+        // 后缀用栈 中转后数字栈
+        num = new Stack<>();
+        //中转后字符栈
+        charnum = new Stack<>();
+        //存字符串数组
+        calculate = new String[1000];
+        //字符串数组长度
+        calculateLength = 0 ;
     }
 
-    //转字符串数组
+    /**
+     * 转字符串数组
+     */
     public void toStringArray(String input) {
         boolean pointFalg = false;
         char charArray[] = input.toCharArray();
-        double number = 0;//用于导入多位数
-        int j = 0 ;//用于计入当前字符串数组的位数
+        //用于导入多位数
+        double number = 0;
+        //用于计入当前字符串数组的位数
+        int j = 0 ;
         int sizeOfArray = charArray.length;
         int pointBelow =1
                 ;
@@ -87,7 +107,8 @@ public class Calculate {
             }
             System.out.println("---z->" + calculate[i]);
         }
-        calculateLength = j-- ;//不--会将‘#’存入
+        //不--会将‘#’存入
+        calculateLength = j-- ;
     }
 
     public void outPutCalculate() {
@@ -237,12 +258,13 @@ public class Calculate {
 //			num.push("#");
     }
 
-    //后缀计算
+    /**
+     * 后缀计算
+     */
     public String postfix() {
         BigDecimal a  , b ;//栈中弹出的两数
         BigDecimal sum ;//求两数运算
         for (int i = 0; i < calculateLength ; i++ ) {
-//				System.out.println("目前符号：" + calculate[i]);
             if (i == 0) {
                 num.push(calculate[i]);
             }else if (calculate[i].equals("+") ) {

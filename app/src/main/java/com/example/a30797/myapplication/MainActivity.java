@@ -15,49 +15,83 @@ import com.example.a30797.myapplication.compute.Calculate;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-    String edit = new String();//用于存储edit中的数
-    int bracket_flag01 = 0 ;//用于判断括号合法性
-    int flag01  = 0 ;//用于匹配运算模式
-    int flag02 = 0 ;//用于查看是否反复点击同一模式按钮
-    int flag03 = 0 ;//用于查看 前一轮是否为转换
-    TextView tv_save_up;//记录框
+
+    //用于存储edit中的数
+    String edit = new String();
+
+    //用于判断括号合法性
+    int bracket_flag01 = 0 ;
+
+    /**
+     * 用于匹配运算模式
+     */
+    int flag01  = 0 ;
+
+    //用于查看是否反复点击同一模式按钮
+    int flag02 = 0 ;
+
+    //用于查看 前一轮是否为转换
+    int flag03 = 0 ;
+
+    //记录框
+    TextView tv_save_up;
     TextView tv_save_dowm;
-    TextView tv;//输出框
-    Button gri_bn[] = new Button[20];//网格布局 按钮
-    GridLayout gridLayout;//网格布局
-    String[] chars = new String[]{//定义4*4 16个按钮文本数组
+
+    //输出框
+    TextView tv;
+
+    //网格布局 按钮
+    Button gri_bn[] = new Button[20];
+
+    //网格布局
+    GridLayout gridLayout;
+
+    //定义4*4 16个按钮文本数组
+    String[] chars = new String[]{
             "C","←","%","+",
             "7","8","9","--",
             "4","5","6","*",
             "1","2","3","/",
             "( )","0",".","=",
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //设置输出框
-        tv = (TextView) findViewById(R.id.textview);
-        //设置输出框
-        tv_save_up = (TextView) findViewById(R.id.textview_up);
-        //设置输出框
-        tv_save_dowm = (TextView) findViewById(R.id.textview_down);
-        gridLayout = (GridLayout) findViewById(R.id.root);
+
+        iniView();
         iniClick();
     }
-    /*
-    点击事件
+
+    private void iniView() {
+        //设置输出框
+        tv = findViewById(R.id.textview);
+        //设置输出框
+        tv_save_up = findViewById(R.id.textview_up);
+        //设置输出框
+        tv_save_dowm = findViewById(R.id.textview_down);
+        gridLayout = findViewById(R.id.root);
+    }
+
+    /**
+     * 点击事件
      */
     private void iniClick(){
         for( int i = 0 ; i < chars.length ; i++){
             //chat用于传递i到监听事件
             final int chat = i;
             gri_bn[i] = new Button(this);
-            gri_bn[i].setText(chars[i]);//设置按钮的字号大小
-            gri_bn[i].setTextSize(40);//设置数字按钮颜色
-            gri_bn[i].setTextColor(Color.WHITE);//按钮四周空白区域
-            gri_bn[i].setPadding(43 , 43 , 43 , 43);//设置按钮背景
-            gri_bn[i].setBackgroundResource(R.drawable.shape_button_01);//指定按钮组所在行
+            //设置按钮的字号大小
+            gri_bn[i].setText(chars[i]);
+            //设置数字按钮颜色
+            gri_bn[i].setTextSize(40);
+            //按钮四周空白区域
+            gri_bn[i].setTextColor(Color.WHITE);
+            //设置按钮背景
+            gri_bn[i].setPadding(43 , 43 , 43 , 43);
+            //指定按钮组所在行
+            gri_bn[i].setBackgroundResource(R.drawable.shape_button_01);
             GridLayout.Spec rowSpec = GridLayout.spec(i / 4 + 2);
             //指定数组所在列
             GridLayout.Spec columeSpec = GridLayout.spec(i % 4);
@@ -119,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
                             char array[] = tv.getText().toString().toCharArray();
                             Log.e("789",String.valueOf(array[ array.length - 1 ]));
                             if ( ( array[array.length - 1 ] > '9' ||  array[ array.length - 1 ] < '0' )
-                                    && array[  array.length - 1 ] != ')' ){//判断前一个字符类型
+                                    //判断前一个字符类型
+                                    && array[  array.length - 1 ] != ')' ){
                                 tv.append( "(" );
                                 bracket_flag01 ++ ;
                                 flag02 = 0 ;
@@ -141,8 +176,9 @@ public class MainActivity extends AppCompatActivity {
                         tv.append(chars[chat]);
                     }else if ( tv.getText().toString().length() > 0 ){
                         char array[] = tv.getText().toString().toCharArray();
+                        //判断前一个字符类型
                         if ( ( array[ array.length - 1 ] <= '9' &&  array[ array.length - 1 ] >= '0' )
-                                || array[ array.length - 1 ] == ')' ) {//判断前一个字符类型
+                                || array[ array.length - 1 ] == ')' ) {
                             if( chars[chat].equals("--") ){
                                 tv.append("-");
                                 flag02 = 0 ;
@@ -171,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
      * 判断当前操作
      */
     public void ChooseFlag(TextView jt){
